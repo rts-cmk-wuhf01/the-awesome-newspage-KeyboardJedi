@@ -24,8 +24,9 @@
         <%- include('partials/header.ejs') %>
     </header>
 
-
-    <%- include('partials/reklame.ejs') %>
+    <div class="hero-area">
+    <%- include('partials/hero-area.ejs') %>
+    </div>
     <!-- ##### Header Area End ##### -->
 
     <!-- ##### Hero Area Start ##### -->
@@ -140,14 +141,18 @@
                 </div>
 
                 <div class="col-12 col-lg-4">
+                      <div class="col-12 col-md-6 col-lg-4">
+                    <%- include("partials/topnews") %>
+                    </div>
                     <div class="section-heading">
                         <h6>Info</h6>
                     </div>
-                    <!-- Popular News Widget -->
-                    <%- include("partials/topnews") %>
-
-                    <!-- Newsletter Widget -->
+                    <!-- Popular News Widget -->'
+                    
+                  
+                    <!-- Newsletter Widget --><div class="newsletter-widget">
                     <%- include("partials/newsletter-widget.ejs") %>
+                    </div>
                 </div>
             </div>
         </div>
