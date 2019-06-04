@@ -21,7 +21,8 @@ app.set('view engine', 'ejs');
 // peg på den mappe hvor alle views filerne er placeret
 app.set('views', './server/views');
 
-
+//npm install data-and-time --save
+app.locals.dateAndTime = require('date-and-time');
 
 /* indlæs alle de routes serveren skal håndtere
  * dette sker igennem en ny fil, for at splitte koden op i smartere blokke */
