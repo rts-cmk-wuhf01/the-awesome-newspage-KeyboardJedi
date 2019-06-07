@@ -8,9 +8,9 @@
                 </div>
                 <div id="breakingNewsTicker" class="ticker">
                     <ul>    
-                        <% if(typeof breakingNewsDK != "undefined"){ %>
-                        <% breakingNewsDK.forEach(news =>{  %>
-                            <li><a href="#"><%= news %></a></li>
+                        <% if(typeof breakingnewsdk != "undefined"){ %>
+                        <% breakingnewsdk.forEach(news =>{  %>
+                            <li><a href="#"><%= news.text %></a></li>
                         <% })%>
                         <% }%>
                     </ul>
@@ -24,9 +24,9 @@
                 </div>
                 <div id="internationalTicker" class="ticker">
                     <ul>
-                            <% if(typeof breakingNewsEN != "undefined"){ %>
-                                <% breakingNewsEN.forEach(news =>{  %>
-                                    <li><a href="#"><%= news %></a></li>
+                            <% if(typeof breakingnewsen != "undefined"){ %>
+                                <% breakingnewsen.forEach(news =>{  %>
+                                    <li><a href="#"><%= news.text %></a></li>
                                 <% })%>
                                 <% }%>
                     </ul>

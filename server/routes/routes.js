@@ -1,62 +1,45 @@
+const mysql = require('../config/mysql');
+
 module.exports = (app) => {
 
-   app.get('/', (req, res, next) => {
-      let breakingnewsDK = [
-         "Danskebank er gået konkurs", "Jyskebank er gået konkurs", "Nordea er gået konkurs"
-      ]
-      let breakingnewsEN = [
-         "Trump got reelected. Americas streets are going wild!", "Tigerwoods won his 12th PGA title", "Kim Jong-un claims that North Korea has enough firepower to blow up the sun"
-      ]
 
-      let topnews = [
-         {
-            "text": "Danskebank er gået konkurs",
-            "date": "2019-09-19 13:51:04"
-         },
-         {
-            "text": "Jyskebank er gået konkurs",
-            "date": "2019-09-21 17:51:04"
-         },
-         {
-            "text": "Nordea er gået konkurs",
-            "date": "2019-10-09 11:51:04"
-         },
-         {
-            "text": "Sparekassen Sjælland er gået konkurs",
-            "date": "2019-12-11 19:51:04"
-         },
-      ]
-
+   app.get('/', async(req, res, next) => {
+      let db = await mysql.connect();
+      let [breakingnewsdk] = await db.execute("SELECT * FROM breakingnewsdk")
+      let [breakingnewsen] = await db.execute("SELECT * FROM breakingnewsen")
+      let [topnews] = await db.execute("SELECT * FROM topnews")
+      db.end();
+      
       res.render('home', {
          "topnews": topnews,
-         "breakingNewsDK": breakingnewsDK,
-         "breakingNewsEN": breakingnewsEN
+         "breakingnewsdk": breakingnewsdk,
+         "breakingnewsen": breakingnewsen
       });
    });
 
-   app.get('/about', (req, res, next) => {
-      let breakingnewsDK = [
-         "Danskebank er gået konkurs", "Jyskebank er gået konkurs", "Nordea er gået konkurs"
-      ]
-      let breakingnewsEN = [
-         "Trump got reelected. Americas streets are going wild!", "Tigerwoods won his 12th PGA title", "Kim Jong-un claims that North Korea has enough firepower to blow up the sun"
-      ]
-      res.render('about',{
-         "breakingNewsDK": breakingnewsDK,
-         "breakingNewsEN": breakingnewsEN
+   app.get('/about', async (req, res, next) => {
+      let db = await mysql.connect();
+      let [breakingnewsdk] = await db.execute("SELECT * FROM breakingnewsdk")
+      let [breakingnewsen] = await db.execute("SELECT * FROM breakingnewsen")
+      
+      db.end();
+      
+      res.render('about', {
+         "breakingnewsdk": breakingnewsdk,
+         "breakingnewsen": breakingnewsen
       });
    });
 
-   app.get('/contact', (req, res, next) => {
-      let breakingnewsDK = [
-         "Danskebank er gået konkurs", "Jyskebank er gået konkurs", "Nordea er gået konkurs"
-      ]
-      let breakingnewsEN = [
-         "Trump got reelected. Americas streets are going wild!", "Tigerwoods won his 12th PGA title", "Kim Jong-un claims that North Korea has enough firepower to blow up the sun"
-      ]
+   app.get('/contact', async(req, res, next) => {
+      let db = await mysql.connect();
+      let [breakingnewsdk] = await db.execute("SELECT * FROM breakingnewsdk")
+      let [breakingnewsen] = await db.execute("SELECT * FROM breakingnewsen")
+      
+      db.end();
+      
       res.render('contact', {
-         "breakingNewsDK": breakingnewsDK,
-         "breakingNewsEN": breakingnewsEN
+         "breakingnewsdk": breakingnewsdk,
+         "breakingnewsen": breakingnewsen
       });
    });
 
