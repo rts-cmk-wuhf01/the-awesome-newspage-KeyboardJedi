@@ -8,9 +8,9 @@
                 </div>
                 <div id="breakingNewsTicker" class="ticker">
                     <ul>    
-                        <% if(typeof breakingnewsdk != "undefined"){ %>
-                        <% breakingnewsdk.forEach(news =>{  %>
-                            <li><a href="#"><%= news.text %></a></li>
+                        <% if(typeof articles != "undefined"){ %>
+                        <% articles.forEach(news =>{  %>
+                            <li><a href="#"><%= news.title %></a></li>
                         <% })%>
                         <% }%>
                     </ul>
@@ -24,11 +24,11 @@
                 </div>
                 <div id="internationalTicker" class="ticker">
                     <ul>
-                            <% if(typeof breakingnewsen != "undefined"){ %>
-                                <% breakingnewsen.forEach(news =>{  %>
-                                    <li><a href="#"><%= news.text %></a></li>
-                                <% })%>
-                                <% }%>
+                        <% if(typeof articles != "undefined"){ %>
+                            <% articles.forEach(news =>{  %>
+                                <li><a href="#"><%= news.title %></a></li>
+                            <% })%>
+                            <% }%>
                     </ul>
                 </div>
             </div>
@@ -37,7 +37,7 @@
         <!-- Hero Add -->
         <div class="col-12 col-lg-4">
             <div class="hero-add">
-                <a href="#"><img src="img/bg-img/hero-add.gif" alt=""></a>
+                <a href="#"><img src="/img/bg-img/hero-add.gif" alt=""></a>
             </div>
         </div>
     </div>

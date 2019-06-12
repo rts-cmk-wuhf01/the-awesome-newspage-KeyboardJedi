@@ -1,5 +1,5 @@
 let bodyElement = document.querySelector("body");
-let allImages = document.querySelectorAll("img");
+let allImages = document.querySelectorAll("/img");
 
 state = false;
 

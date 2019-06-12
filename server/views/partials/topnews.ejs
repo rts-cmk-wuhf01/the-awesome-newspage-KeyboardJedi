@@ -2,12 +2,12 @@
     <h3>4 Most Popular News</h3>
 
     <!-- Single Popular Blog -->
-    <% if(typeof topnews != "undefined"){ %>
-        <% topnews.forEach(article =>{ %>
-        <% let commentDate = new Date(article.date) %>
+    <% if(typeof articles != "undefined"){ %>
+        <% articles.forEach(article =>{ %>
+      
     <div class="single-popular-post">
         <a href="#">
-            <h6><span>1.</span><%= article.title %></h6>
+            <h6><span><%= article.id %></span><%= article.title %></h6>
         </a>
         <p><%= article.date %></p>
     </div>
