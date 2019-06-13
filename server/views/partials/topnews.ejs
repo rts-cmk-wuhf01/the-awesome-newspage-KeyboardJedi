@@ -7,10 +7,13 @@
       
     <div class="single-popular-post">
         <a href="#">
-            <h6><span><%= article.id %></span><%= article.title %></h6>
+            <h6><span><%= article.id %></span><%= article.article_title %></h6>
         </a>
-        <p><%= article.date %></p>
+      
+
+        <p><%= dateAndTime.format(article.date, 'MMMM DD  | h:mm A') %></p>
     </div>
+    <%  console.log (article)%>
 <% })%>
 <% }%>
     <!-- Single Popular Blog -->

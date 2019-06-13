@@ -10,7 +10,7 @@
                     <ul>    
                         <% if(typeof articles != "undefined"){ %>
                         <% articles.forEach(news =>{  %>
-                            <li><a href="#"><%= news.title %></a></li>
+                            <li><a href="#"><%= news.article_title %></a></li>
                         <% })%>
                         <% }%>
                     </ul>
@@ -26,7 +26,7 @@
                     <ul>
                         <% if(typeof articles != "undefined"){ %>
                             <% articles.forEach(news =>{  %>
-                                <li><a href="#"><%= news.title %></a></li>
+                                <li><a href="#"><%= news.article_title %></a></li>
                             <% })%>
                             <% }%>
                     </ul>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Vært: 127.0.0.1
--- Genereringstid: 12. 06 2019 kl. 14:47:13
+-- Genereringstid: 13. 06 2019 kl. 14:06:17
 -- Serverversion: 10.1.30-MariaDB
 -- PHP-version: 7.2.1
 
@@ -33,7 +33,7 @@ CREATE TABLE `articles` (
   `title` varchar(30) NOT NULL,
   `authors_fk` int(11) NOT NULL,
   `text` varchar(3000) NOT NULL,
-  `date` date NOT NULL,
+  `date` datetime NOT NULL,
   `images_fk` int(11) NOT NULL,
   `category_fk` int(11) NOT NULL,
   `comments_fk` int(11) NOT NULL
@@ -44,10 +44,10 @@ CREATE TABLE `articles` (
 --
 
 INSERT INTO `articles` (`id`, `title`, `authors_fk`, `text`, `date`, `images_fk`, `category_fk`, `comments_fk`) VALUES
-(1, 'Russia Invades Denmark', 1, 'Lorem Ipsum.', '2019-06-07', 1, 3, 1),
-(3, 'Rock, Paper, Scissor champion!', 13, 'Hans Petersen from Aarhus in Denmark won the title of world champion last saturday against the defending world champion Epic Eric', '2019-06-12', 1, 1, 1),
-(4, 'Too much sugar is unhealthy', 10, 'Studies have found sugar to be unhealthy', '2019-06-13', 1, 4, 1),
-(5, 'Stones are the new currency', 1, 'Stoness value has increased dramatically and people are now using stones as currency instead of coins and bills. ', '2019-06-22', 1, 2, 1);
+(1, 'Russia Invades Denmark', 1, 'Lorem Ipsum.', '2019-06-07 17:31:00', 1, 3, 1),
+(3, 'Rock, Paper, Scissor champion!', 13, 'Hans Petersen from Aarhus in Denmark won the title of world champion last saturday against the defending world champion Epic Eric', '2019-06-12 13:01:52', 1, 1, 1),
+(4, 'Too much sugar is unhealthy', 10, 'Studies have found sugar to be unhealthy', '2019-06-13 19:54:00', 1, 4, 1),
+(5, 'Stones are the new currency', 1, 'Stoness value has increased dramatically and people are now using stones as currency instead of coins and bills. ', '2019-06-22 09:41:00', 1, 2, 1);
 
 -- --------------------------------------------------------
 

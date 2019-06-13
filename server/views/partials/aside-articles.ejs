@@ -6,15 +6,15 @@
         <% articles.forEach(article =>{ %>
             <div class="single-blog-post small-featured-post d-flex">
                 <div class="post-thumb">
-                    <a href="#"><img src="/img/bg-img/<%- article.images_fk %>" alt=""></a>
+                    <a href="#"><img src="/img/bg-img/<%- article.src %>" alt=""></a>
                 </div>
                 <div class="post-data">
-                    <a href="#" class="post-catagory"><%- article.category_fk %></a>
+                    <a href="#" class="post-catagory"><%- article.category_title%></a>
                     <div class="post-meta">
                         <a href="#" class="post-title">
-                            <h6><%- article.title %></h6>
+                            <h6><%- article.article_title %></h6>
                         </a>
-                        <p class="post-date"><span>7:00 AM</span> | <span><%- article.date %></span></p>
+                        <p class="post-date"><%- article.date %></span></p>
                     </div>
                 </div>
             </div>
