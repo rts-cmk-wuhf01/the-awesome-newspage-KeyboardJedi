@@ -1,5 +1,4 @@
-<div class="col-12 col-md-6 col-lg-4">
-    <!-- Single Featured Post -->
+
 
     
     <% if(typeof articles != 'undefined'){ %>
@@ -14,12 +13,12 @@
                         <a href="#" class="post-title">
                             <h6><%- article.article_title %></h6>
                         </a>
-                        <p class="post-date"><%- article.date %></span></p>
+                        <p class="post-date"><%= dateAndTime.format(article.date, 'MMMM DD  | h:mm A') %></span></p>
                     </div>
                 </div>
+                
             </div>
-
+            <% console.log("hej") %>
         <% }); %>
      <% } %>
 
-</div>

@@ -222,27 +222,8 @@
                         <div class="latest-posts-widget mb-50">
 
                             <!-- Single Featured Post -->
-                            <% if(typeof articles != 'undefined'){ %>
-                                <% articles.forEach(article =>{ %>
-                                    <div class="single-blog-post small-featured-post d-flex">
-                                        <div class="post-thumb">
-                                            <a href="#"><img src="/img/bg-img/<%- article.src %>" alt=""></a>
-                                        </div>
-                                        <div class="post-data">
-                                            <a href="#" class="post-catagory"><%- article.category_title%></a>
-                                            <div class="post-meta">
-                                                <a href="#" class="post-title">
-                                                    <h6><%- article.article_title %></h6>
-                                                </a>
-                                                <p class="post-date"><%- article.date %></span></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                        
-                                <% }); %>
-                             <% } %>
+                    
                             <!-- Single Featured Post -->
-
                         </div>
 
                         <!-- Popular News Widget -->

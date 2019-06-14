@@ -3,21 +3,29 @@ const mysql = require('../config/mysql');
 module.exports = (app) => {
 
 
-   app.get('/', async(req, res, next) => {
+   app.get('/', async (req, res, next) => {
       let db = await mysql.connect(); 
       let [categories] = await db.execute("SELECT * FROM categories")
       let [articles] = await db.execute(`
       SELECT categories.title AS category_title, 
-      articles.title AS article_title, images.src,
-      date
+      articles.title AS article_title, 
+      images.src, 
+      articles.comments_fk,
+      articles.date
       FROM articles
+      INNER JOIN comments ON comments_fk = comments.id
       INNER JOIN categories ON category_fk = categories.id
       INNER JOIN images ON images_fk = images.id`)
+      let [comments] = await db.execute(`SELECT * FROM comments
+      INNER JOIN articles ON comment_fk = comments.id
+      
+      `)
       db.end();
-  
+     
       res.render('home', {
          "categories": categories,
-         "articles":articles
+         "articles":articles,
+         
       });
    });
 
