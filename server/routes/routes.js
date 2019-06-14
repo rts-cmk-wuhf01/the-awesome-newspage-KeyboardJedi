@@ -16,16 +16,14 @@ module.exports = (app) => {
       INNER JOIN comments ON comments_fk = comments.id
       INNER JOIN categories ON category_fk = categories.id
       INNER JOIN images ON images_fk = images.id`)
-      let [comments] = await db.execute(`SELECT * FROM comments
-      INNER JOIN articles ON comment_fk = comments.id
-      
+  let [comments] = await db.execute(`SELECT * FROM comments
       `)
       db.end();
      
       res.render('home', {
          "categories": categories,
          "articles":articles,
-         
+         "comments": comments
       });
    });
 
@@ -108,12 +106,22 @@ module.exports = (app) => {
       FROM articles
       INNER JOIN categories ON category_fk = categories.id
       INNER JOIN images ON images_fk = images.id`)
-      db.end();
+    
+
+    
+     
+
+      let [comments] = await db.execute(`SELECT * FROM comments
+      INNER JOIN users ON user_fk = users.id 
       
+      `)
+      db.end();
 
       res.render('single-post', {
          "articles":articles,
-         "categories": categories
+         "categories": categories,
+         "comments": comments,
+         
       });
    });
 };

@@ -180,30 +180,7 @@
 
                         <!-- Comment Area Start -->
                         <div class="comment_area clearfix">
-                            <h5 class="title">3 Comments</h5>
-                            <% if(typeof latestComments != "undefined"){ %>
-                            <% latestComments.forEach(comment =>{ %>
-                            <% let commentDate = new Date(comment.date) %>
-                            <ol>
-                                <!-- Single Comment Area -->
-                                <li class="single_comment_area">
-                                    <!-- Comment Content -->
-                                    <div class="comment-content d-flex">
-                                        <!-- Comment Author -->
-                                        <div class="comment-author">
-                                            <img src="/img/bg-img/30.jpg" alt="author">
-                                        </div>
-                                        <!-- Comment Meta -->
-                                        <div class="comment-meta">
-                                            <a href="#" class="post-author"><%= comment.name %></a>
-                                            <a href="#" class="post-date"><%= comment.date %></a>
-                                            <p><%= comment.text %></p>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ol>
-                            <% }) %>
-                            <% } %>
+                     <%- include("partials/comments") %>
                         </div>
 
                         <div class="post-a-comment-area section-padding-80-0">
