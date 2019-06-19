@@ -1,22 +1,18 @@
+<h3>4 Most Popular News</h3>
 
-    <h3>4 Most Popular News</h3>
+<!-- Single Popular Blog -->
+<% if(typeof articles != "undefined"){ %>
+<% articles.forEach((article, index) =>{ %>
 
-    <!-- Single Popular Blog -->
-    <% if(typeof articles != "undefined"){ %>
-        <% articles.forEach(article =>{ %>
-      
-    <div class="single-popular-post">
-        <a href="#">
-            <h6><span><%= article.id %></span><%= article.article_title %></h6>
-        </a>
-      
+<div class="single-popular-post">
+    <a href="#">
+        <h6><span><%= index+1 %></span><%= article.article_title %></h6>
+    </a>
 
-        <p><%= dateAndTime.format(article.date, 'MMMM DD  | h:mm A') %></p>
-    </div>
-    
+
+    <p><%= dateAndTime.format(article.article_date, 'MMMM DD  | h:mm A') %></p>
+</div>
+
 <% })%>
 <% }%>
-    <!-- Single Popular Blog -->
-    
-
-    
+<!-- Single Popular Blog -->

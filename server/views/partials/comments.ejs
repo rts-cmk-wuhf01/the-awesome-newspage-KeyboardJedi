@@ -9,14 +9,15 @@
         <div class="comment-content d-flex">
             <!-- Comment Author -->
             <div class="comment-author">
-                <img src="/img/bg-img/30.jpg" alt="author">
+                <img src="/img/bg-img/<%= comment.images_src %>" alt="author">
             </div>
             <!-- Comment Meta -->
             <div class="comment-meta">
-                <a href="#" class="post-author"><%= comment.name %></a>
-                <a href="#" class="post-date"><%= dateAndTime.format(comment.date, 'MMMM DD  | h:mm A') %></a>
-                <p><%= comment.text %></p>
+                <a href="#" class="post-author"><%= comment.author_name %></a>
+                <a href="#" class="post-date"><%= dateAndTime.format(comment.comments_date, 'MMMM DD  | h:mm A') %></a>
+                <p><%= comment.comments_text %></p>
             </div>
+            <h1></h1>
         </div>
     </li>
 </ol>

@@ -144,7 +144,7 @@
                         
                                 <% if(typeof categories != 'undefined'){ %>
                                     <% categories.forEach(category =>{ %>
-                                       <li><a href="/categories-post/<%=category.id %>"><%= category.title %></a></li>
+                                       <li><a href="/categories-post/<%=category.id %>"><%= category.category_title %></a></li>
                                        <% console.log(category) %>
                                     <% }); %>
                                  <% } %>
