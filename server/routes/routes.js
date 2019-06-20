@@ -8,8 +8,17 @@ async function getCategories() {
    return categories;
 }
 
-module.exports = (app) => {
+async function getArticles(){
+   let db = await mysql.connect();
+   let [articles] = await db.execute(`
+   SELECT 
+   *
+   FROM articles
+   INNER JOIN 
+   `)
+}
 
+module.exports = (app) => {
    app.get('/', async (req, res, next) => {
       let db = await mysql.connect();
       let categories = await getCategories();
@@ -18,7 +27,9 @@ module.exports = (app) => {
       article_title, 
       images.images_src, 
       articles.article_comments_fk,
-      articles.article_date
+      articles.article_date,
+      articles.id AS article_id,
+      categories.id AS category_id
       FROM articles
       INNER JOIN comments ON article_comments_fk = comments.id
       INNER JOIN categories ON article_category_fk = categories.id
@@ -65,9 +76,13 @@ module.exports = (app) => {
       let [articles] = await db.execute(`
       SELECT category_title, 
       article_title, 
-      images.images_src,
-      article_date
+      images.images_src, 
+      articles.article_comments_fk,
+      articles.article_date,
+      articles.id AS article_id,
+      categories.id AS category_id
       FROM articles
+      INNER JOIN comments ON article_comments_fk = comments.id
       INNER JOIN categories ON article_category_fk = categories.id
       INNER JOIN images ON article_images_fk = images.id`)
 
@@ -103,9 +118,13 @@ module.exports = (app) => {
       let [articles] = await db.execute(`
       SELECT category_title, 
       article_title, 
-      images.images_src,
-      article_date
+      images.images_src, 
+      articles.article_comments_fk,
+      articles.article_date,
+      articles.id AS article_id,
+      categories.id AS category_id
       FROM articles
+      INNER JOIN comments ON article_comments_fk = comments.id
       INNER JOIN categories ON article_category_fk = categories.id
       INNER JOIN images ON article_images_fk = images.id`)
       db.end();
@@ -125,21 +144,36 @@ module.exports = (app) => {
 
       let db = await mysql.connect();
       let categories = await getCategories();
-      let [articles] = await db.execute(`
+      let [selectedArticle] = await db.execute(`
       SELECT category_title, 
-      article_title, images.images_src,
-      article_date
+      article_title, 
+      images.images_src,
+      author_name,
+      article_text
       FROM articles
       INNER JOIN categories ON article_category_fk = categories.id
       INNER JOIN images ON article_images_fk = images.id
       INNER JOIN authors ON article_authors_fk = authors.id
       WHERE articles.id = ?
        `
-       // WHERE articles.id = ?, den finder kun viser articles med ID der matcher URL parameteren
-       // req.params.article_id henter URL parameteret
-       , [req.params.article_id])
+         // WHERE articles.id = ?, den finder kun viser articles med ID der matcher URL parameteren
+         // req.params.article_id henter URL parameteret
+         , [req.params.article_id])
 
-       let [comments] = await db.execute(`
+      let [articles] = await db.execute(`
+      SELECT 
+      category_title, 
+      article_title, 
+      images.images_src,
+      article_date,
+      authors.author_name
+      FROM articles
+      INNER JOIN categories ON article_category_fk = categories.id
+      INNER JOIN images ON article_images_fk = images.id
+      INNER JOIN authors ON article_authors_fk = authors.id
+       `)
+
+      let [comments] = await db.execute(`
        SELECT * FROM comments
        INNER JOIN users ON comments_user_fk = users.id
        INNER JOIN images ON users_avatar_fk = images.id
@@ -147,15 +181,16 @@ module.exports = (app) => {
 
       db.end();
 
-      //comments>users.user_fk = usersuser.id>
-
       res.render('single-post', {
          "articles": articles,
-         "categories": categories,
+         "selectedArticle":selectedArticle[0],
          "comments": comments,
+         "categories": categories
 
       });
    });
+
+      //comments>users.user_fk = usersuser.id
 };
 
 
