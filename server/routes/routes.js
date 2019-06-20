@@ -8,7 +8,7 @@ async function getCategories() {
    return categories;
 }
 
-async function getArticles(){
+async function getArticles() {
    let db = await mysql.connect();
    let [articles] = await db.execute(`
    SELECT 
@@ -183,14 +183,72 @@ module.exports = (app) => {
 
       res.render('single-post', {
          "articles": articles,
-         "selectedArticle":selectedArticle[0],
+         "selectedArticle": selectedArticle[0],
          "comments": comments,
          "categories": categories
 
       });
    });
 
-      //comments>users.user_fk = usersuser.id
+   app.post(`/contact`, async (req, res, next) => {
+      let name = req.body.name;
+      let email = req.body.email
+      let subject = req.body.subject
+      let message = req.body.message
+      let contactDate = new Date();
+
+
+      //validering 
+      let insert_errors = [];
+
+      if (name == "undefined" || name == "") {
+         insert_errors.push("Name feltet skal være udfyldt!")
+      }
+      if (email == "undefined" || email == "") {
+         insert_errors.push("Email feltet skal være udfyldt!")
+      }
+      if (subject == "undefined" || subject == "") {
+         insert_errors.push("Subject feltet skal være udfyldt!")
+      }
+      if (message == "undefined" || message == "") {
+         insert_errors.push("Message feltet skal være udfyldt!")
+      }
+      if (insert_errors.length > 0) {
+         let categories = await getCategories();
+         res.render(`contact`, {
+            "categories": categories,
+            "error_messages": insert_errors.join(", "),
+            "value": req.body
+         })
+
+      } else {
+         let db = await mysql.connect();
+         let result = await db.execute(`
+         INSERT INTO messages 
+         (messages_sender, messages_email, messages_subject, messages_text) 
+         VALUES (?,?,?,?)`, [name, email, subject, message]);
+         db.end();
+
+         if (result[0].affectedRows > 0) {
+            insert_errors.push('Tak for din besked, vi vender tilbage hurtigst muligt');
+         } else {
+            insert_errors.push('Din besked blev ikke modtaget.... ');
+         }
+
+         let categories = await getCategories(); // denne har jeg ikke forklaret endnu! 
+         res.render('contact', {
+            'categories': categories,
+            'error_messages': insert_errors.join(', '),
+            'values': req.body
+         });
+      }
+
+
+
+
+   })
+
+   //comments>users.user_fk = usersuser.id
 };
 
 

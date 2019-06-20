@@ -12,7 +12,16 @@ const logger = require('morgan');
 app.use(logger('dev', {
    // hvis ALLE requests skal ses i loggen, udkommenter næste linje
    skip: req => (!req.url.endsWith(".html") && req.url.indexOf('.') > -1)
+
+   
 }));
+
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+   extended: true
+}));
+//håndterer formular data
 
 
 
